@@ -33,7 +33,7 @@ func getConfigDir() string {
 	}
 	return dirname + "/.config/commands.json"
 }
-func createFileIfNotExist(file string) error { //create file if not exist
+func createFileIfNotExist(file string) error { //create file if does not exists
 	_, err := os.Stat(file)
 	if os.IsNotExist(err) {
 		f, err := os.Create(file)
@@ -169,8 +169,6 @@ func main() {
 				for _, cmd := range commands {
 					if cmd.Name == command {
 						isFound = true
-						//execute command
-						fmt.Println(cmd.Command)
 						//decode base64 command
 						decoded, err := base64.StdEncoding.DecodeString(cmd.Command)
 						if err != nil {
